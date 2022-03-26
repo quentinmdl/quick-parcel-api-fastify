@@ -14,8 +14,8 @@ server.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "./public", "index.html"));
 });
 
+// Initiate routes from controller(s)
 server.use("/api/festival", festivalController);
-
 
 // Listening 
 server.listen("8101", function () {

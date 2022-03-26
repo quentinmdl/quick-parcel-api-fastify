@@ -25,7 +25,7 @@ router.post("/post", (req, res) => {
         if(festivalFound) {
             return res.status(500).json( response.responseERROR("Festival already exist"));
         } else {
-                models.festival
+            models.festival
             .create({
                 name: name,
                 startDate: startDate,
@@ -57,19 +57,15 @@ router.get("/getAll", (req, res) => {
         offset: !isNaN(offset) ? offset : null,
         })
         .then(function (festivals) {
-        if (festivals) {
-            return res.status(200).json(
-            response.responseOK("", {
-                festivals: festivals,
-            })
-            );
-        } else {
-            res
-            .status(200)
-            .json(
-                response.responseERROR(response.returnType.FESTIVAL.NOT_FOUND)
-            );
-        }
+            if (festivals) {
+                return res.status(200).json(
+                    response.responseOK("", {
+                        festivals: festivals,
+                    })
+                );
+            } else {
+                res.status(200).json(response.responseERROR(response.returnType.FESTIVAL.NOT_FOUND));
+            }
         })
         .catch(function (err) {
         res.status(400).json(response.responseERROR(response.returnType.INVALID_FIELDS));
@@ -124,7 +120,6 @@ router.put("/updateById/:id", (req, res) => {
         where: { id: idFestival }         
     }).then(function (festivalFound){
 
-
         //Debug - Find festival with same name
 
         // models.festival
@@ -153,7 +148,7 @@ router.put("/updateById/:id", (req, res) => {
                 }
             })
             .catch(function (err) {
-              return res.status(500).json(response.responseERROR(response.returnType.FESTIVAL.CANT_UPDATE));
+                return res.status(500).json(response.responseERROR(response.returnType.FESTIVAL.CANT_UPDATE));
             });
         }
     });
@@ -162,7 +157,7 @@ router.put("/updateById/:id", (req, res) => {
 
 // Delete festival by id
 router.delete("/deleteById/:id", (req, res) => {
-      // Params
+    // Params
     let idFestival = req.params.id.trim();;
 
     // Debug
