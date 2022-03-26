@@ -17,6 +17,20 @@ GET, POST, PUT, DELETE
 - deleteById/:id
 
 
+# COMMANDS
+
+At first run this command for migrate all entities on database.
+
+```console
+    npm run migrate
+```
+
+Then run the project with it
+
+```console
+    npm run dev
+```
+
 
 
 
