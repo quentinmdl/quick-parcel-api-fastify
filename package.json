@@ -1,0 +1,23 @@
+{
+  "name": "festival-api",
+  "version": "1.0.0",
+  "description": "NodeJs - Express",
+  "main": "server.js ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js",
+    "migrate": "sequelize db:migrate",
+    "start": "node server.js"
+  },
+  "author": "Quentin MENDEL",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "mysql2": "^2.3.3",
+    "nodemailer": "^6.7.2",
+    "nodemon": "^2.0.15",
+    "sequelize": "*"
+  }
+}
