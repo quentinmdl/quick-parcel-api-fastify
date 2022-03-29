@@ -40,6 +40,8 @@ Then run the project with it
 
 # Entity
 
+(Form urlencoded)
+
 Festival :
 
 name: String,
