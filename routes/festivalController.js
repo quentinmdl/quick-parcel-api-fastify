@@ -36,7 +36,7 @@ router.post("/post", (req, res) => {
                 if(newFestival) {
                     return res.status(201).json( response.responseOK(response.returnType.FESTIVAL.CREATED, { newFestival: newFestival}));
                 } else {
-                    return res.json(response.responseERROR(response.returnType.FESTIVAL.CANT_CREATE));
+                    return res.status(500).json(response.responseERROR(response.returnType.FESTIVAL.CANT_CREATE));
                 }
             });
         }
@@ -68,7 +68,7 @@ router.get("/getAll", (req, res) => {
             }
         })
         .catch(function (err) {
-        res.status(400).json(response.responseERROR(response.returnType.INVALID_FIELDS));
+        res.status(500).json(response.responseERROR(response.returnType.INVALID_FIELDS));
     });
 });
 
@@ -94,7 +94,7 @@ router.get("/getById/:id", (req, res) => {
                 })
             );
         } else {
-            return res.status(400).json(response.responseERROR(response.returnType.FESTIVAL.NOT_FOUND));
+            return res.status(404).json(response.responseERROR(response.returnType.FESTIVAL.NOT_FOUND));
         }
     });
 });
@@ -182,7 +182,7 @@ router.delete("/deleteById/:id", (req, res) => {
                 return res.status(500).json(response.responseERROR(response.returnType.FESTIVAL.CANT_DELETE));
             });
         } else {
-            return res.status(400).json(response.responseERROR(response.returnType.FESTIVAL.NOT_FOUND));
+            return res.status(404).json(response.responseERROR(response.returnType.FESTIVAL.NOT_FOUND));
         }
     });
 });

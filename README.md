@@ -19,6 +19,13 @@ GET, POST, PUT, DELETE
 
 # COMMANDS
 
+
+Install the node modules 
+
+```console
+    npm install
+```
+
 At first run this command for migrate all entities on database.
 
 ```console
@@ -31,7 +38,14 @@ Then run the project with it
     npm run dev
 ```
 
+# Entity
 
+Festival :
+
+name: String,
+startDate: Date,
+endDate: Date,
+numberPlaces: Integer
 
 
   
