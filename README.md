@@ -12,6 +12,7 @@ GET, POST, PUT, DELETE
 
 - post
 - getAlls
+- search (option: ?term=)
 - getById/:id
 - updateById/:id
 - deleteById/:id
@@ -24,12 +25,6 @@ Install the node modules
 
 ```console
     npm install
-```
-
-At first run this command for migrate all entities on database.
-
-```console
-    npm run migrate
 ```
 
 Then run the project with it

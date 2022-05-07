@@ -1,3 +1,4 @@
+const { request } = require("express");
 const express = require("express");
 const router = express.Router();
 const mFestival = require("../models/festival");
@@ -40,6 +41,41 @@ router.post("/post", (req, res) => {
         }
     })
 });
+
+
+// Search by term
+router.get("/search", async (req, res) => {
+    // Query
+    let term = req.query.term;
+
+    await mFestival
+        .aggregate([
+            {
+                $search: {
+                    "index": 'Name',
+                    "autocomplete": {
+                        "query": `${term}`,
+                        "path": "name"
+                    }
+                }
+            }
+        ])
+        .then(function (festivalsFound) {
+            if (festivalsFound.length > 0) {
+                return res.status(200).json(
+                    response.responseOK("Get all entities succesfully", {
+                        festivals: festivalsFound,
+                    })
+                );
+            } else {
+                res.status(200).json(response.responseERROR(response.returnType.FESTIVAL.NOT_FOUND));
+            }
+        })
+        .catch(function (err) {
+            res.status(500).json(response.responseERROR(response.returnType.INVALID_FIELDS));
+        });
+});
+
 
 // Gets all festivals
 router.get("/getAll", (req, res) => {
@@ -160,8 +196,6 @@ router.delete("/deleteById/:id", (req, res) => {
     if (!idFestival) {
         return res.status(400).json(response.responseERROR(response.returnType.INVALID_FIELDS));
     }
-
-    console.log(idFestival);
 
     mFestival
     .findOne({
