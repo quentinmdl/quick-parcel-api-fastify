@@ -2,7 +2,7 @@ Started with #quick-parcel-api-node by quentinmdl
 
 # Description 
 
-Basic festival api with Node + Express + Sequelize
+Basic festival api with Node + Express + Mongoose
 
 # Methods : 
 
