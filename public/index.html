@@ -9,18 +9,27 @@
 <body>
     <label for="festival-search">Festival :</label>
     <input id="festival-search" type="text"/>
-    <p>Result in web console</p>
+    <div>
+        <pre id="results">
+            
+        </pre>
+    </div>
 </body>
 
 <script>
     let input = document.querySelector("#festival-search");
+    // let results = document.querySelector("#results");
+
+    let entities;
     if(input) {
-        input.addEventListener("keydown", async (e) => {
-            console.log(e);
+        input.addEventListener("keyup", async (e) => {
+            // console.log(input.value);
             await fetch("http://localhost:8101/api/festival/search?term="+input.value)
                 .then(results => results.json())
-                .then(results => console.log(results?.body?.festivals))
-        })
+                .then(results => entities = results?.body?.festivals)
+                // console.log(entities);
+                results.textContent = JSON.stringify(entities, undefined, 2);
+            })
     }
 </script>
 </html>

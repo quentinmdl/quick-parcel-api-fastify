@@ -12,9 +12,13 @@
   "author": "Quentin MENDEL",
   "license": "ISC",
   "dependencies": {
+    "@fastify/formbody": "^6.0.0",
+    "@fastify/helmet": "^8.0.0",
+    "@fastify/static": "^5.0.0",
     "bcrypt": "^5.0.1",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "fastify": "^3.29.0",
     "mongoose": "^6.3.1",
     "nodemailer": "^6.7.2",
     "nodemon": "^2.0.15"
