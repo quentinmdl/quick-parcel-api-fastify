@@ -1,8 +1,8 @@
-Started with #quick-parcel-api-node by quentinmdl
+Quick-parcel-api-node by quentinmdl
 
 # Description 
 
-Basic festival api with Node + Express + Mongoose
+Basic entity api with Node + Fastify + Mongoose
 
 # Methods : 
 
@@ -17,11 +17,24 @@ GET, POST, PUT, DELETE
 - updateById/:id
 - deleteById/:id
 
+# Started
 
-# COMMANDS
+Configure and rename all files :
 
+    - Env
+    - server.js
+    - Controller
+    - Models
+    - Routes
+    - Validations
+
+# Commands
 
 Install the node modules 
+
+```console
+    npm install
+```
 
 ```console
     npm install
@@ -36,13 +49,6 @@ Then run the project with it
 # Entity
 
 (Form urlencoded)
-
-Festival :
-
-name: String,
-startDate: Date,
-endDate: Date,
-numberPlaces: Integer
 
 
   

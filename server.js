@@ -1,9 +1,9 @@
 // Initialize & Configure Server
 const fastify = require("fastify")({logger: true});
-const path = require('node:path');
 
 // Require modules
-const fs = require('fs');
+const path = require('node:path');
+require('dotenv').config()
 
 // Register fastify module
 fastify.register(require('@fastify/formbody'))
@@ -16,12 +16,9 @@ fastify.register(require('@fastify/static'), {
 
 });
 
-// Custom port
-const PORT = 8101;
-
 // Initialize & Configure MongoDB
 const mongoose = require('mongoose');
-mongoose.connect('mongodb+srv://admin:admin@main.doxhq.mongodb.net/festival-api?retryWrites=true&w=majority').then(
+mongoose.connect(process.env.DATABASE_URL).then(
   console.log('Database connected')
 ).catch(err => console.log(err));
 
@@ -29,7 +26,7 @@ mongoose.connect('mongodb+srv://admin:admin@main.doxhq.mongodb.net/festival-api?
 // const index = fs.createReadStream(path('./public/index.html'))
 
 // Import Controllers
-const festivalRoutes = require("./routes/festivalRoutes");
+const entityRoutes = require("./routes/entityRoutes");
 
 // Configure Routes
 fastify.get("/", function (req, res) {
@@ -38,12 +35,12 @@ fastify.get("/", function (req, res) {
 });
 
 // Initiate routes from controller(s)
-fastify.register(festivalRoutes, { prefix: "/api/festival"});
+fastify.register(entityRoutes, { prefix: "/api/entity"});
 
 // Listening 
 const start = async () => {
   try {
-    await fastify.listen(PORT);
+    await fastify.listen(process.env.PORT);
     console.log("Server running");
     console.log(fastify.printRoutes());
   } catch (err) {

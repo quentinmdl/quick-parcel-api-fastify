@@ -1,4 +1,4 @@
-const mFestival = require("../models/festival");
+const mEntity = require("../models/entityModel");
 const response = require("../utils/response");
 
 // Search entities by terms
@@ -6,7 +6,7 @@ async function searchC(req, res) {
     // Query
     let term = req.query.term;
 
-    await mFestival
+    await mEntity
     .aggregate([
         {
             $search: {
@@ -49,7 +49,7 @@ async function getAllC(req, res) {
         direction = order.split(":")[1];
     }
 
-    mFestival
+    mEntity
     .find()
     .sort(order ? {[field]: `${direction}`} : {name: 'asc'})
     .limit(!isNaN(limit) ? limit : null)
@@ -81,7 +81,7 @@ async function getByIdC(req, res) {
         return res.status(400).send(response.responseERROR(response.returnType.INVALID_FIELDS));
     }
 
-    mFestival
+    mEntity
     .findOne({
         _id: idFestival
     }).then(function (festivalFound){
@@ -110,14 +110,14 @@ async function postC(req, res) {
     }
 
 
-    mFestival
+    mEntity
     .findOne({
         name: name
     }).then(function (festivalFound){
         if(festivalFound) {
             return res.status(500).send(response.responseERROR("Festival already exist"));
         } else {
-            new mFestival({
+            new mEntity({
                 name: name,
                 startDate: startDate,
                 endDate: endDate,
@@ -151,7 +151,7 @@ async function updateByIdVC(req, res){
         return res.status(400).send(response.responseERROR(response.returnType.INVALID_FIELDS));
     }
 
-    mFestival
+    mEntity
     .findOne({
         _id : idFestival
     }).then(function (festivalFound) {
@@ -163,7 +163,7 @@ async function updateByIdVC(req, res){
                 {numberPlaces: numberPlaces}
             ).then(function(festivalUpdated) {
                 if(festivalUpdated) {
-                    mFestival
+                    mEntity
                     .findOne({
                         _id : idFestival
                     }).then(function(festivalUpdated) {
@@ -194,7 +194,7 @@ async function deleteByIdC(req, res) {
         return res.status(400).send(response.responseERROR(response.returnType.INVALID_FIELDS));
     }
 
-    mFestival
+    mEntity
     .findOne({
         _id : idFestival
     }).then(function (festivalFound) {
